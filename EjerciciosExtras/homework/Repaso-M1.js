@@ -8,16 +8,22 @@ const {
 // Implementar la función countArray: a partir de un array en el cual cada posición puede ser un único
 // número u otro array anidado de números, determinar la suma de todos los números contenidos en el array.
 // El array será recibido por parámetro.
-// Ejemplo:
+// Ejemplo:countArray
 //    const array = [1, [2, [3,4]], [5,6], 7];
-//    countArray(array); --> Debería devolver 28 (1 + 2 + 3 + 4 + 5 + 6 + 7)
+//    (array); --> Debería devolver 28 (1 + 2 + 3 + 4 + 5 + 6 + 7)
 // Pista: utilizar el método Array.isArray() para determinar si algun elemento de array es un array anidado
 // [Para más información del método: https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Array/isArray]
 
 var countArray = function(array) {
     // Tu código aca:
-    
+    let count=0;
+    array=array.flat(Infinity)
+    for (let i = 0; i < array.length; i++) {
+       count+=array[i]
+    }
+    return count;
 }
+console.log(countArray([1, [2, [3,4]], [5,6], 7]))
 
 
 // Implementar la función countProps: a partir de un objeto en el cual cada propiedad puede contener
@@ -39,7 +45,13 @@ var countArray = function(array) {
 
 var countProps = function(obj) {
     // Tu código aca:
-
+    let suma=Object.keys(obj).length;
+    for (let propiedad in obj) {
+        if(typeof obj[propiedad]==="object" && !Array.isArray(obj[propiedad])){
+            suma+=countProps(obj[propiedad]);
+        }
+    }
+    return suma;
 }
 
 
@@ -53,7 +65,16 @@ var countProps = function(obj) {
 
 LinkedList.prototype.changeNotNumbers = function(){
     // Tu código aca:
-
+    let current=this.head
+    let count=0;
+    while(current){
+        if (isNaN(Number(current.value))) {
+            current.value="Kiricocho"
+            count++
+        }
+        current=current.next;
+    }
+    return count;
 }
 
 

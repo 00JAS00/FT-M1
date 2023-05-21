@@ -14,11 +14,14 @@ function Node(value) {
   this.value=value;
   this.next=null;
 }
-function LinkedList() {
-  this.head=null;
-  this.length=null
-}
-LinkedList.prototype.search=function(value){
+class LinkedList {
+  constructor(){
+    this.head=null;
+    this.length=null
+  }
+  
+
+  search(value){
   let current=this.head;
     while(current) {
       if (typeof(value)=="function"){
@@ -29,11 +32,11 @@ LinkedList.prototype.search=function(value){
       current=current.next;
     }
     return null;
-}
+  }
 
 
 //current en español es actual
-LinkedList.prototype.add=function (value) {
+add(value) {
   let node=new Node(value);
   let current=this.head;
   if(!current){
@@ -51,7 +54,7 @@ LinkedList.prototype.add=function (value) {
 
 
 
-LinkedList.prototype.remove=function () {
+ remove(){
   let current=this.head
   let anterior;
   if(!this.head){
@@ -70,6 +73,7 @@ LinkedList.prototype.remove=function () {
   anterior.next=null
   this.length--  
   return current.value;
+}
 }
 
 /* let miLista=new LinkedList()
